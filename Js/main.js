@@ -21,9 +21,6 @@ let productos = JSON.parse(localStorage.getItem("productos"));
 let contenedorProductos = document.getElementById("contenedor-productos");
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// LOG DE INICIO PARA VER PRODUCTOS Y CARRITO EN CONSOLA
-console.log("Lista de productos disponibles:", productos);
-
 // FUNCION PARA RENDERIZAR PRODUCTOS
 function mostrarProductos(lista) {
   contenedorProductos.innerHTML = ""; // limpiar antes de renderizar

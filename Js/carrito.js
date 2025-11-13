@@ -14,8 +14,6 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let contadorItems = document.getElementById("contador-items");
 let totalCarrito = document.getElementById("total-carrito");
 
-console.log("Carrito al cargar:", carrito);
-
 // Funcion que renderiza muestra el carrito en pantalla
 function mostrarCarrito(lista) {
   contenedorCarrito.innerHTML = "";
@@ -76,9 +74,8 @@ function activarEliminar() {
       if (productoOriginal && productoMax) {
         if (productoOriginal.unidades < productoMax.unidades) {
           productoOriginal.unidades += 1;
-          console.log(`Stock restaurado para ${productoOriginal.nombre}: +1 unidad`);
         } else {
-          console.log(`Stock de ${productoOriginal.nombre} ya está en el máximo (${productoMax.unidades})`);
+
         }
       }
 
@@ -135,8 +132,6 @@ function activarAgregarEnCarrito() {
       // Guardar cambios
       localStorage.setItem("productos", JSON.stringify(productos));
       localStorage.setItem("carrito", JSON.stringify(carrito));
-
-      console.log(`Agregado 1 unidad de ${productoOriginal.nombre} desde el carrito`);
 
       // Volver a renderizar
       mostrarCarrito(carrito);
