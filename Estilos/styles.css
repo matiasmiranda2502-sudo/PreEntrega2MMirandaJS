@@ -117,3 +117,9 @@ footer {
 body {
   padding-bottom: 60px;
 }
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}

@@ -42,7 +42,7 @@ function mostrarCarrito(lista) {
       <p>Cantidad: ${producto.cantidad || 1}</p>
       <p>Subtotal: $${subtotal}</p>
       <button class="boton-eliminar" data-id="${producto.id}">Eliminar</button>
-      <button class="boton-agregar-carrito" data-id="${producto.id}">Agregar</button>
+      <button class="boton-agregar-carrito" data-id="${producto.id}" ${producto.unidades <= 0 ? "disabled" : ""}>${producto.unidades <= 0 ? "Sin stock" : "Agregar"}</button>
     `;
     contenedorCarrito.appendChild(tarjeta);
   });
@@ -114,7 +114,8 @@ function activarAgregarEnCarrito() {
 
       // Validar stock disponible
       if (productoOriginal.unidades <= 0) {
-        alert("No quedan unidades disponibles de " + productoOriginal.nombre);
+        e.currentTarget.disabled = true;
+        e.currentTarget.textContent = "Sin stock";
         return;
       }
 

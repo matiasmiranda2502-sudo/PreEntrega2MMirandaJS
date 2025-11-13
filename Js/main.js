@@ -35,7 +35,9 @@ function mostrarProductos(lista) {
       <p>Color: ${producto.color}</p>
       <p>Precio: $${producto.precio}</p>
       <p id="stock-${producto.id}">Unidades disponibles: ${producto.unidades}</p>
-      <button class="boton-agregar" id="${producto.id}">Agregar al carrito</button>
+      <button class="boton-agregar" id="${producto.id}" ${producto.unidades <= 0 ? "disabled" : ""}>
+        ${producto.unidades <= 0 ? "Sin stock" : "Agregar al carrito"}
+      </button>
     `;
 
     contenedorProductos.appendChild(tarjeta);
@@ -55,7 +57,8 @@ function activarEventos() {
 
       // VALIDAR STOCK
       if (productoSeleccionado.unidades <= 0) {
-        alert("No quedan unidades disponibles de " + productoSeleccionado.nombre);
+        e.currentTarget.disabled = true;
+        e.currentTarget.textContent = "Sin stock";
         return;
       }
 
@@ -81,6 +84,11 @@ function activarEventos() {
       const stockTexto = document.getElementById(`stock-${idProducto}`);
       if (stockTexto) {
         stockTexto.textContent = `Unidades disponibles: ${productoSeleccionado.unidades}`;
+      }
+
+      if (productoSeleccionado.unidades <= 0) {
+        e.currentTarget.disabled = true;
+        e.currentTarget.textContent = "Sin stock";
       }
 
       // Guardar cambios
